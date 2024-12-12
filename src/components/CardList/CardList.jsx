@@ -2,9 +2,10 @@ import Card from "../Card/Card";
 import { fetchAllPokemon } from "../../services/pokemonApi";
 import "./cardlist.css";
 
-const poke = fetchAllPokemon();
+const poke = await fetchAllPokemon();
 
 export default function CardList() {
+  console.log(poke);
   return (
     <>
       <div className="Card-List">

@@ -5,7 +5,8 @@
 .Card-List {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 2rem;
   justify-content: space-evenly;
   grid-row-gap: 2rem;
   justify-items: center;

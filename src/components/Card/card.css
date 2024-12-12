@@ -23,7 +23,7 @@
   .Card-Item {
     position: relative;
     width: 300px;
-    height: 600px;
+    height: 500px;
     padding: 0.4rem;
     background-image: radial-gradient(rgb(238, 155, 55) 50%, rgb(200, 50, 0));
     border: 0.4rem solid rgba(150, 90, 20, 1);
@@ -57,12 +57,13 @@
       &:first-child {
         border-radius: 100%;
         background-color: rgb(255, 215, 0);
-        height: 20px;
-        width: 20px;
-        line-height: 20px;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
         padding: 0;
-        top: 15px;
+        top: 7px;
         left: 5px;
+        font-size: 1.2rem;
         box-shadow: 0 0 5px rgb(255, 50, 0);
       }
 
@@ -172,7 +173,7 @@
         position: absolute;
         height: 20px;
         width: 20px;
-        top: 7px;
+        top: 5px;
         margin-left: 5px;
       }
       .type-name {
@@ -181,18 +182,19 @@
         text-align: center;
         width: 100%;
         font-weight: normal;
+        font-size: 0.8rem;
       }
     }
   }
 
   .Card-Abilities {
-    height: 6rem;
+    height: 9rem;
     background-color: white;
     border-radius: 1rem;
     border: 0.25rem solid rgb(240, 210, 170);
     padding: 0 0.7rem;
     overflow: scroll;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 
     span {
       font-size: 0.8rem;
