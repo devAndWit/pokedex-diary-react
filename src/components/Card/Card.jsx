@@ -2,7 +2,7 @@ import "./card.css";
 const heart = "♥";
 
 export function Card_Title({ pokemon }) {
-  console.log("TITLE:");
+  console.log("Card-Title");
   // console.log(pokemon);
 
   return (
@@ -14,7 +14,10 @@ export function Card_Title({ pokemon }) {
       <span id={"poke_" + pokemon.id + "_3"} className="shine">
         {pokemon?.id || "No ID"}
       </span>
-      <span id={"poke_" + pokemon.id + "_4"} className="favorite">
+      <span
+        id={"poke_" + pokemon.id + "_4"}
+        className={pokemon.isFavorite ? "favorite" : ""}
+      >
         {heart}
       </span>
     </div>
@@ -32,13 +35,13 @@ export function Card_Image({ pokemon }) {
   );
 }
 
-//! change "Card_Power" to "Card_Types"
+//! change "Card_Power" to "Card-Types"
 export function Card_Types({ pokemon }) {
   console.log("Card_Types");
   console.log(pokemon);
 
   return (
-    <div className="Card_Types">
+    <div className="Card-Types">
       {pokemon.types.map((type, index) => {
         return (
           <div
@@ -46,8 +49,8 @@ export function Card_Types({ pokemon }) {
             className="type"
             id={"poke_" + pokemon.id + "_type_" + index}
           >
-            <strong className="type-name">{type.name}</strong>
             <img className="type-img" src={type.img} alt={type.name} />
+            <strong className="type-name">{type.name}</strong>
           </div>
         );
       })}
@@ -55,13 +58,13 @@ export function Card_Types({ pokemon }) {
   );
 }
 
-//! change "Card_Text" to "Card_Abilities"
+//! change "Card_Text" to "Card-Abilities"
 export function Card_Abilities({ pokemon }) {
   console.log("Card_Abilities");
   // console.log(pokemon);
 
   return (
-    <div className="Card_Abilities">
+    <div className="Card-Abilities">
       {pokemon.abilities.map((ability, index) => {
         return (
           <div

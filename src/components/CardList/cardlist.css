@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.card-list {
+.Card-List {
   display: flex;
-
+  flex-direction: row;
   gap: 1rem;
   justify-content: space-evenly;
   grid-row-gap: 2rem;

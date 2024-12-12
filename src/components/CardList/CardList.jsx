@@ -60,6 +60,35 @@ const poke = [
       },
     ],
   },
+  {
+    id: 3,
+    name: "bulbasaur_two",
+    isFavorite: false,
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+    types: [
+      {
+        name: "poison",
+        img: "https://raw.githubusercontent.com/partywhale/pokemon-type-icons/refs/heads/main/icons/poison.svg",
+      },
+      {
+        name: "grass",
+        img: "https://raw.githubusercontent.com/partywhale/pokemon-type-icons/refs/heads/main/icons/poison.svg",
+      },
+    ],
+    abilities: [
+      {
+        name: "overgrow",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, reprehenderit sed.",
+      },
+      {
+        name: "grass",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, doloribus.",
+      },
+    ],
+  },
 ];
 
 export default function CardList() {
