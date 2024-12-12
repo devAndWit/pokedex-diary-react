@@ -1,7 +1,11 @@
+import CardList from "./components/CardList/CardList";
+
 function App() {
   return (
     <>
-      <div></div>
+      <div className="w-full">
+        <CardList />
+      </div>
     </>
   );
 }
