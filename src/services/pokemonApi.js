@@ -32,7 +32,7 @@ export async function getPokemonWithAllUsageData(url) {
             name: data.data.name,
             abilities: abilitiesWithDescriptions,
             types: typesWithSymbols,
-            sprite: `${artworkUrl}${data.id}.png`,
+            sprite: `${artworkUrl}${data.data.id}.png`,
         };
     } catch (error) {
         console.log(error.message)
