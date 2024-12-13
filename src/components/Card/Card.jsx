@@ -1,4 +1,5 @@
 import "./card.css";
+import {favoritePokemonIdList} from "../../helper/createFavoriteList.js";
 const heart = "♥";
 
 export default function Card({ pokemon }) {
@@ -17,7 +18,7 @@ export default function Card({ pokemon }) {
         </span>
         <span
           id={"poke_" + pokemon.id + "_4"}
-          className={pokemon.isFavorite ? "favorite" : ""}
+          className={favoritePokemonIdList.find((el) => el.id === pokemon.id) ? "favorite" : ""}
         >
           {heart}
         </span>
