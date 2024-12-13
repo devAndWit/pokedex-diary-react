@@ -13,7 +13,11 @@ function App() {
 
     const handleDataFromSearch = (data) => {
         const searchedPokemon = search(data, pokemonList)
-        setFilteredPokemonList([searchedPokemon]);
+        if (searchedPokemon) {
+            setFilteredPokemonList([searchedPokemon])
+        } else {
+            alert("Couldn't find a Pokemon with that name or index!")
+        }
     };
 
     const handleNavButtonClick = (data) => {
@@ -26,7 +30,6 @@ function App() {
         } else {
             console.log("Invalid value!")
         }
-
     }
 
     useEffect(() => {
