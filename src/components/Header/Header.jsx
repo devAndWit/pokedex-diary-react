@@ -36,14 +36,14 @@ export function Header({onSearch, onClick}) {
                     />
                 </form>
                 <span className="">
-             <a
+             <button
                  className=""
                  onClick={handleOnClick}
-             >Home</a>
-          <a
+             >Home</button>
+          <button
               className=""
               onClick={handleOnClick}
-          >Favorite</a>
+          >Favorite</button>
         </span>
             </nav>
         </header>

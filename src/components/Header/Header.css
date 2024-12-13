@@ -46,7 +46,7 @@
         width: 100%;
         text-align: right;
 
-        a {
+        button {
             font-size: 1.2rem;
             font-weight: bold;
             color: rgb(160, 50, 0);
@@ -56,6 +56,15 @@
             padding: 1rem 2rem;
             border-radius: 1rem;
             margin: 1rem;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #f7ce68;
         }
     }
 }
