@@ -1,12 +1,9 @@
+import { addFavorite, allFavorite, findFavorite } from "./localStorage.js";
 
-export const favoritePokemonIdList = [
-    {id: 2},
-    {id: 5},
-    {id: 150},
-    {id: 58},
-]
+export const favoritePokemonIdList = allFavorite();
+
 export function getFavoritePokemonList(pokemonList) {
-    const idsToKeep = new Set(favoritePokemonIdList.map(obj => obj.id));
+  const idsToKeep = new Set(favoritePokemonIdList.map((obj) => obj.id));
 
-    return pokemonList.filter((pokemon) => idsToKeep.has(pokemon.id));
+  return pokemonList.filter((pokemon) => idsToKeep.has(pokemon.id));
 }

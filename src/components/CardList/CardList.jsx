@@ -1,8 +1,8 @@
 import Card from "../Card/Card";
-import "./cardlist.css";
+import "./CardList.css";
 
-export default function CardList({pokemonList}) {
-    // console.log(pokemonList)
+export default function CardList({ pokemonList }) {
+  // console.log(pokemonList)
   return (
     <>
       <div className="Card-List">
