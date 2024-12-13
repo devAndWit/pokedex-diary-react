@@ -1,20 +1,16 @@
-import {getAllPokemon} from "./storageWorker.js";
-
-const allPokemon = getAllPokemon();
-
-export function searchPokemonById(id) {
-    return allPokemon.find((elem) => elem.id === +id);
+export function searchPokemonById(id, pokemonList) {
+    return pokemonList.find((elem) => elem.id === +id);
 }
 
-export function searchPokemonByName(name) {
-    return allPokemon.find((elem) => elem.name.toLowerCase() === name.toLowerCase());
+export function searchPokemonByName(name, pokemonList) {
+    return pokemonList.find((elem) => elem.name.toLowerCase() === name.toLowerCase());
 }
 
-export function search(query) {
+export function search(query, pokemonList) {
     if (!isNaN(query) && query.trim() !== "") {
-        return searchPokemonById(query)
+        return searchPokemonById(query, pokemonList)
     } else if ((/[a-zA-Z]+/.test(query))) {
-        return searchPokemonByName(query)
+        return searchPokemonByName(query, pokemonList)
     }
     return false;
 }

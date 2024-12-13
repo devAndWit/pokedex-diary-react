@@ -1,8 +1,7 @@
 import './Header.css'
 import {useState} from "react";
 
-// eslint-disable-next-line react/prop-types
-export function Header({onSearch}) {
+export function Header({onSearch, onClick}) {
     const [searchInputData, setSearchInputData] = useState('');
 
 
@@ -16,6 +15,10 @@ export function Header({onSearch}) {
             event.target.value.clear;
             setSearchInputData('')
         }
+    }
+
+    const handleOnClick = (event) => {
+        onClick(event.target.innerText)
     }
     return (
         <header className="header">
@@ -35,11 +38,11 @@ export function Header({onSearch}) {
                 <span className="">
              <a
                  className=""
-                 href=""
+                 onClick={handleOnClick}
              >Home</a>
           <a
               className=""
-              href=""
+              onClick={handleOnClick}
           >Favorite</a>
         </span>
             </nav>
