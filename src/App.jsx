@@ -6,6 +6,7 @@ import CardList from "./components/CardList/CardList";
 import {Spinner} from "./utils/Spinner/Spinner.jsx";
 import {search} from "./helper/search.js";
 import {getFavoritePokemonList} from "./helper/createFavoriteList.js";
+import {Footer} from "./components/Footer/Footer.jsx";
 
 function App() {
     const [pokemonList, setPokemonList] = useState('')
@@ -25,8 +26,7 @@ function App() {
             setFilteredPokemonList('')
         } else if (data.toLowerCase() === 'favorite') {
             const favoritePokemonList = getFavoritePokemonList(pokemonList)
-            console.log(favoritePokemonList)
-            // setFilteredPokemonList(favoritePokemonList)
+            setFilteredPokemonList(favoritePokemonList)
         } else {
             console.log("Invalid value!")
         }
@@ -40,13 +40,12 @@ function App() {
         fetchData();
     }, []);
 
-    console.log(pokemonList)
-
     return (
         <>
             <div className="w-full">
                 <Header onSearch={handleDataFromSearch} onClick={handleNavButtonClick}/>
                 {pokemonList ? <CardList key={"cardList"} pokemonList={filteredPokemonList ? filteredPokemonList : pokemonList}/> : <Spinner/>}
+                <Footer/>
             </div>
         </>
     );
