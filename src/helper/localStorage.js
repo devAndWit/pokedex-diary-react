@@ -30,6 +30,7 @@ export function addFavorite(id) {
 
 export function allFavorite() {
   const data = JSON.parse(localStorage.getItem(storageKey)) || [];
+  data.sort();
   return data;
 }
 
@@ -43,7 +44,7 @@ export function findFavorite(id) {
 
   return (
     undefined !==
-    allFavorite().findFavorite((value) => {
+    allFavorite().find((value) => {
       return value === id;
     })
   );
