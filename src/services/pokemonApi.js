@@ -1,5 +1,6 @@
 import { pokeApiUrl, artworkUrl } from "./config.js";
 import { typeSymbols } from "./typeSymbols.js";
+import { findFavorite } from "../helper/localStorage.js";
 import axios from "axios";
 
 export async function fetchAllPokemon() {
@@ -28,13 +29,14 @@ export async function getPokemonWithAllUsageData(url) {
       data.data.abilities
     );
     const typesWithSymbols = await getTypesWithSymbol(data.data.types);
-
+    console.log(data.data.id);
     return {
       id: data.data.id,
       name: data.data.name,
       abilities: abilitiesWithDescriptions,
       types: typesWithSymbols,
       sprite: `${artworkUrl}${data.data.id}.png`,
+      isFavorite: findFavorite(data.data.id) ? true : false,
     };
   } catch (error) {
     console.log(error.message);

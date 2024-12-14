@@ -10,7 +10,7 @@ export default function CardList({ pokemonList }) {
           // console.log(index, pok);
           return (
             <>
-              <Card key={"card_" + index} pokemon={pok} />
+              <Card pokemon={pok} />
             </>
           );
         })}

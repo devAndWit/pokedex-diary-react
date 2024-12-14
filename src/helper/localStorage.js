@@ -15,9 +15,9 @@ function validate(id) {
 }
 
 export function addFavorite(id) {
-  id = validate(id);
+  let valid = validate(id);
 
-  if (id === false) {
+  if (valid === false) {
     return false;
   }
 
@@ -25,35 +25,39 @@ export function addFavorite(id) {
     return;
   }
 
-  localStorage.setItem(storageKey, JSON.stringify([...allFavorite(), id]));
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify([...allFavorite(), id].sort())
+  );
 }
 
 export function allFavorite() {
-  const data = JSON.parse(localStorage.getItem(storageKey)) || [];
-  data.sort();
+  let data = JSON.parse(localStorage.getItem(storageKey)) || [];
+  data = data.sort();
   return data;
 }
 
 export function findFavorite(id) {
-  id = validate(id);
+  let valid = validate(id);
 
-  if (id === false) {
+  if (valid === false) {
     console.log("Error: id is not valid", id);
     return false;
   }
 
-  return (
-    undefined !==
-    allFavorite().find((value) => {
-      return value === id;
-    })
-  );
+  allFavorite().forEach(function (fav) {
+    if (fav === id) {
+      return true;
+    }
+  });
+
+  return false;
 }
 
 export function removeFavorite(id) {
-  id = validate(id);
+  let valid = validate(id);
 
-  if (id === false) {
+  if (valid === false) {
     console.log("Error: id is not valid", id);
     return false;
   }
@@ -66,7 +70,7 @@ export function removeFavorite(id) {
 
   clear();
 
-  localStorage.setItem(storageKey, JSON.stringify(data));
+  localStorage.setItem(storageKey, JSON.stringify(data.sort()));
 }
 
 export function clear() {

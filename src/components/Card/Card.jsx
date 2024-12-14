@@ -1,9 +1,6 @@
 import "./Card.css";
 import { favoritePokemonIdList } from "../../helper/createFavoriteList.js";
-import {
-  addFavorite,
-  removeFavorite,
-} from "../../helper/localStorage.js";
+import { addFavorite, removeFavorite } from "../../helper/localStorage.js";
 import { useState } from "react";
 const heart = "♥";
 
@@ -11,7 +8,7 @@ export default function Card({ pokemon }) {
   // console.log("DEFAULT:");
   // console.log(pokemon);
 
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
   const changeIsFavorite = function () {
     if (isFavorite) {
@@ -19,7 +16,6 @@ export default function Card({ pokemon }) {
       removeFavorite(pokemon.id);
       return;
     }
-
     setIsFavorite(true);
     addFavorite(pokemon.id);
   };
@@ -38,7 +34,7 @@ export default function Card({ pokemon }) {
         <span
           onClick={changeIsFavorite}
           id={"poke_" + pokemon.id + "_4"}
-          className={isFavorite ? "favorite" : ""}
+          className={pokemon.isFavorite ? "favorite" : ""}
         >
           {heart}
         </span>

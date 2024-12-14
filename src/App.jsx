@@ -9,8 +9,8 @@ import { getFavoritePokemonList } from "./helper/createFavoriteList.js";
 import { Footer } from "./components/Footer/Footer.jsx";
 
 function App() {
-  const [pokemonList, setPokemonList] = useState("");
-  const [filteredPokemonList, setFilteredPokemonList] = useState("");
+  const [pokemonList, setPokemonList] = useState([]);
+  const [filteredPokemonList, setFilteredPokemonList] = useState([]);
 
   const handleDataFromSearch = (data) => {
     const searchedPokemon = search(data, pokemonList);
@@ -22,6 +22,7 @@ function App() {
   };
 
   const handleNavButtonClick = (data) => {
+    console.log("DATA: ", data);
     if (data.toLowerCase() === "home") {
       setFilteredPokemonList("");
     } else if (data.toLowerCase() === "favorite") {
