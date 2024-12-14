@@ -5,8 +5,8 @@ import { fetchAllPokemon } from "./services/pokemonApi.js";
 import CardList from "./components/CardList/CardList";
 import { Spinner } from "./utils/Spinner/Spinner.jsx";
 import { search } from "./helper/search.js";
-import { getFavoritePokemonList } from "./helper/createFavoriteList.js";
 import { Footer } from "./components/Footer/Footer.jsx";
+import { getFavoritePokemonList } from "./helper/createFavoriteList.js";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -22,7 +22,6 @@ function App() {
   };
 
   const handleNavButtonClick = (data) => {
-    console.log("DATA: ", data);
     if (data.toLowerCase() === "home") {
       setFilteredPokemonList("");
     } else if (data.toLowerCase() === "favorite") {
