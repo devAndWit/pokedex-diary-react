@@ -5,33 +5,35 @@ import { Spinner } from "./utils/Spinner/Spinner.jsx";
 import CardList from "./components/CardList/CardList";
 
 import { fetchAllPokemon } from "./services/pokemonApi.js";
-import { search } from "./helper/search.js";
 import { getFavoritePokemonList } from "./helper/favoritePokemonList.js";
 import { getFilteredPokemonList } from "./helper/filteredPokemonList.js";
 
 function App() {
   const [dataPokeApiList, setDataPokeApiList] = useState([]);
   const [pokemonList, setPokemonList] = useState("");
-  // const [filteredPokemonList, setFilteredPokemonList] = useState([]);
   const [currentSite, setCurrentSite] = useState("home");
+  const [searchType, setSearchType] = useState("");
 
   const changeCurrentSite = (site) => {
     switch (site) {
       case "favorite":
         console.log("FAVORITE IS CLICKED:");
         setCurrentSite("favorite");
+        setPokemonList([]);
         setPokemonList(getFavoritePokemonList(dataPokeApiList));
+        console.log(pokemonList);
         return;
       case "search":
         console.log("SEARCH IS CLICKED:");
         setCurrentSite("search");
+        setPokemonList([]);
         setPokemonList(getFilteredPokemonList(dataPokeApiList));
         return;
     }
 
     console.log("HOME IS CLICKED:");
     setCurrentSite("home");
-    setPokemonList(setDataPokeApiList);
+    setPokemonList(dataPokeApiList);
     return;
   };
 
@@ -42,10 +44,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllPokemon();
-      // setPokemonList(data);
-      setDataPokeApiList(data);
+      return data;
     };
-    fetchData();
+    console.log(fetchData());
   }, []);
 
   return (
@@ -56,7 +57,11 @@ function App() {
           searchFromInput={searchFromInput}
         />
 
-        {pokemonList ? <CardList key={"cardList"} /> : <Spinner />}
+        {pokemonList ? (
+          <CardList key={"cardList"} pokemonList={pokemonList} />
+        ) : (
+          <Spinner />
+        )}
         <Footer />
       </div>
     </>

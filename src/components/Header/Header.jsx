@@ -4,17 +4,18 @@ import { useState } from "react";
 export function Header({ changeCurrentSite, searchFromInput }) {
   const [searchInputData, setSearchInputData] = useState("");
 
-  //   const handleTyping = (event) => {
-  //     setSearchInputData(event.target.value);
-  //   };
-  //   const handleOnKeyDown = (event) => {
-  //     if (event.keyCode === 13) {
-  //       event.preventDefault();
-  //       onSearch(event.target.value);
-  //       event.target.value.clear;
-  //       setSearchInputData("");
-  //     }
-  //   };
+  const handleTyping = (event) => {
+    setSearchInputData(event.target.value);
+  };
+
+  const handleOnChange = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      searchFromInput(event.target.value);
+      event.target.value.clear;
+      setSearchInputData("");
+    }
+  };
 
   return (
     <header className="header">
@@ -27,10 +28,8 @@ export function Header({ changeCurrentSite, searchFromInput }) {
             className=""
             id="search"
             placeholder="Search"
-            // onKeyDown={handleOnKeyDown}
-            onChange={(e) => {
-              searchFromInput(e);
-            }}
+            onKeyDown={handleOnChange}
+            onChange={handleTyping}
           />
         </form>
         <span className="">

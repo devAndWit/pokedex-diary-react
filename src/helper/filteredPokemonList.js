@@ -1,1 +1,1 @@
-export const getFilteredPokemonList = () => {};
+export const getFilteredPokemonList = (pokemonList, filterType) => {};
