@@ -1,41 +1,49 @@
-import { Header } from "./components/Header/Header.jsx";
 import { useEffect, useState } from "react";
-import { fetchAllPokemon } from "./services/pokemonApi.js";
-
-import CardList from "./components/CardList/CardList";
-import { Spinner } from "./utils/Spinner/Spinner.jsx";
-import { search } from "./helper/search.js";
+import { Header } from "./components/Header/Header.jsx";
 import { Footer } from "./components/Footer/Footer.jsx";
-import { getFavoritePokemonList } from "./helper/createFavoriteList.js";
+import { Spinner } from "./utils/Spinner/Spinner.jsx";
+import CardList from "./components/CardList/CardList";
+
+import { fetchAllPokemon } from "./services/pokemonApi.js";
+import { search } from "./helper/search.js";
+import { getFavoritePokemonList } from "./helper/favoritePokemonList.js";
+import { getFilteredPokemonList } from "./helper/filteredPokemonList.js";
 
 function App() {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [filteredPokemonList, setFilteredPokemonList] = useState([]);
+  const [dataPokeApiList, setDataPokeApiList] = useState([]);
+  const [pokemonList, setPokemonList] = useState("");
+  // const [filteredPokemonList, setFilteredPokemonList] = useState([]);
+  const [currentSite, setCurrentSite] = useState("home");
 
-  const handleDataFromSearch = (data) => {
-    const searchedPokemon = search(data, pokemonList);
-    if (searchedPokemon) {
-      setFilteredPokemonList([searchedPokemon]);
-    } else {
-      alert("Couldn't find a Pokemon with that name or index!");
+  const changeCurrentSite = (site) => {
+    switch (site) {
+      case "favorite":
+        console.log("FAVORITE IS CLICKED:");
+        setCurrentSite("favorite");
+        setPokemonList(getFavoritePokemonList(dataPokeApiList));
+        return;
+      case "search":
+        console.log("SEARCH IS CLICKED:");
+        setCurrentSite("search");
+        setPokemonList(getFilteredPokemonList(dataPokeApiList));
+        return;
     }
+
+    console.log("HOME IS CLICKED:");
+    setCurrentSite("home");
+    setPokemonList(setDataPokeApiList);
+    return;
   };
 
-  const handleNavButtonClick = (data) => {
-    if (data.toLowerCase() === "home") {
-      setFilteredPokemonList("");
-    } else if (data.toLowerCase() === "favorite") {
-      const favoritePokemonList = getFavoritePokemonList(pokemonList);
-      setFilteredPokemonList(favoritePokemonList);
-    } else {
-      console.log("Invalid value!");
-    }
+  const searchFromInput = (test) => {
+    console.log(test);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllPokemon();
-      setPokemonList(data);
+      // setPokemonList(data);
+      setDataPokeApiList(data);
     };
     fetchData();
   }, []);
@@ -44,19 +52,11 @@ function App() {
     <>
       <div className="w-full">
         <Header
-          onSearch={handleDataFromSearch}
-          onClick={handleNavButtonClick}
+          changeCurrentSite={changeCurrentSite}
+          searchFromInput={searchFromInput}
         />
-        {pokemonList ? (
-          <CardList
-            key={"cardList"}
-            pokemonList={
-              filteredPokemonList ? filteredPokemonList : pokemonList
-            }
-          />
-        ) : (
-          <Spinner />
-        )}
+
+        {pokemonList ? <CardList key={"cardList"} /> : <Spinner />}
         <Footer />
       </div>
     </>

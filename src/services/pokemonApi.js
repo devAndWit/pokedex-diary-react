@@ -29,7 +29,6 @@ export async function getPokemonWithAllUsageData(url) {
       data.data.abilities
     );
     const typesWithSymbols = await getTypesWithSymbol(data.data.types);
-    console.log(data.data.id);
     return {
       id: data.data.id,
       name: data.data.name,
