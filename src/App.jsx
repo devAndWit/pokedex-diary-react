@@ -34,6 +34,7 @@ function App() {
     console.log("HOME IS CLICKED:");
     setCurrentSite("home");
     setPokemonList(dataPokeApiList);
+    console.log(pokemonList);
     return;
   };
 
@@ -41,12 +42,13 @@ function App() {
     console.log(test);
   };
 
+  
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllPokemon();
-      return data;
+      setDataPokeApiList(data);
     };
-    console.log(fetchData());
+    fetchData();
   }, []);
 
   return (
