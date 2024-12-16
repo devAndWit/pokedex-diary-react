@@ -27,13 +27,19 @@ export function addFavorite(id) {
 
   localStorage.setItem(
     storageKey,
-    JSON.stringify([...allFavorite(), id].sort())
+    JSON.stringify(
+      [...allFavorite(), id].sort(function (a, b) {
+        return a - b;
+      })
+    )
   );
 }
 
 export function allFavorite() {
   let data = JSON.parse(localStorage.getItem(storageKey)) || [];
-  data = data.sort();
+  data = data.sort(function (a, b) {
+    return a - b;
+  });
   return data;
 }
 
@@ -45,13 +51,14 @@ export function findFavorite(id) {
     return false;
   }
 
+  let res = false;
   allFavorite().forEach(function (fav) {
     if (fav === id) {
-      return true;
+      res = true;
     }
   });
 
-  return false;
+  return res;
 }
 
 export function removeFavorite(id) {
@@ -70,7 +77,14 @@ export function removeFavorite(id) {
 
   clear();
 
-  localStorage.setItem(storageKey, JSON.stringify(data.sort()));
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify(
+      data.sort(function (a, b) {
+        return a - b;
+      })
+    )
+  );
 }
 
 export function clear() {

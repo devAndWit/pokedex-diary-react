@@ -1,23 +1,30 @@
+import { v4 as uuidv4 } from "uuid";
 import "./Card.css";
-import { favoritePokemonIdList } from "../../helper/createFavoriteList.js";
-import { addFavorite, removeFavorite } from "../../helper/localStorage.js";
-import { useState } from "react";
+import {
+  addFavorite,
+  allFavorite,
+  removeFavorite,
+} from "../../helper/localStorage.js";
+import { useState, useEffect } from "react";
 const heart = "♥";
 
-export default function Card({ pokemon }) {
-  // console.log("DEFAULT:");
+export default function Card({ pokemon, index, changeCardData }) {
+  console.log("DEFAULT:");
   // console.log(pokemon);
+
+  // console.log(pokemon.isFavorite);
 
   const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
-  const changeIsFavorite = function () {
+  const toggleFavoriteStatus = () => {
     if (isFavorite) {
-      setIsFavorite(false);
       removeFavorite(pokemon.id);
-      return;
+    } else {
+      addFavorite(pokemon.id);
     }
-    setIsFavorite(true);
-    addFavorite(pokemon.id);
+    setIsFavorite((prev) => !prev);
+
+    changeCardData();
   };
 
   return (
@@ -32,9 +39,9 @@ export default function Card({ pokemon }) {
           {pokemon?.id || "No ID"}
         </span>
         <span
-          onClick={changeIsFavorite}
+          onClick={toggleFavoriteStatus}
           id={"poke_" + pokemon.id + "_4"}
-          className={pokemon.isFavorite ? "favorite" : ""}
+          className={isFavorite ? "favorite" : ""}
         >
           {heart}
         </span>

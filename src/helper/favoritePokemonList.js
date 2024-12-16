@@ -1,10 +1,9 @@
 import { allFavorite } from "../helper/localStorage.js";
 
 export const getFavoritePokemonList = (pokemonList) => {
-  let favorites = allFavorite();
-  let newList = [];
-
-  console.log(favorites);
-  console.log(newList);
-  return newList;
+  const favorites = allFavorite();
+  const favoritesPokemonList = pokemonList.filter((pokemon) => {
+    return favorites.includes(pokemon.id);
+  });
+  return favoritesPokemonList;
 };

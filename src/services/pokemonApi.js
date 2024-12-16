@@ -1,7 +1,7 @@
 import { pokeApiUrl, artworkUrl } from "./config.js";
 import { typeSymbols } from "./typeSymbols.js";
-import { findFavorite } from "../helper/localStorage.js";
 import axios from "axios";
+import { findFavorite } from "../helper/localStorage.js";
 
 export async function fetchAllPokemon() {
   const pokemonSimpleDataList = await getPokemonList();
