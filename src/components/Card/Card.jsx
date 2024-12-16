@@ -1,10 +1,11 @@
 import "./card.css";
-import {favoritePokemonIdList} from "../../helper/createFavoriteList.js";
 const heart = "♥";
 
-export default function Card({ pokemon }) {
-  // console.log("DEFAULT:");
-  // console.log(pokemon);
+export default function Card({ pokemon, favoritePokemons, onFavoriteClick}) {
+    const handlerFavoriteOnClick = () => {
+        onFavoriteClick(pokemon.id);
+    }
+
   return (
     <div id={"poke_" + pokemon.id} className="Card-Item">
       {/* Card-Title */}
@@ -18,7 +19,8 @@ export default function Card({ pokemon }) {
         </span>
         <span
           id={"poke_" + pokemon.id + "_4"}
-          className={favoritePokemonIdList.find((el) => el.id === pokemon.id) ? "favorite" : ""}
+          className={favoritePokemons.find((el) => el.id === pokemon.id) ? "favorite" : ""}
+          onClick={handlerFavoriteOnClick}
         >
           {heart}
         </span>

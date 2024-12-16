@@ -1,8 +1,11 @@
 import Card from "../Card/Card";
 import "./cardlist.css";
+import {getFavoritePokemonList} from "../../helper/createFavoriteList.js";
 
-export default function CardList({pokemonList}) {
-    // console.log(pokemonList)
+export default function CardList({pokemonList, onFavoriteClick}) {
+//     console.log(pokemonList)
+const favoritePokemons = getFavoritePokemonList(pokemonList)
+
   return (
     <>
       <div className="Card-List">
@@ -10,7 +13,7 @@ export default function CardList({pokemonList}) {
           // console.log(index, pok);
           return (
             <>
-              <Card key={"card_" + index} pokemon={pok} />
+              <Card key={"card_" + index} pokemon={pok} favoritePokemons = {favoritePokemons} onFavoriteClick={onFavoriteClick}/>
             </>
           );
         })}
