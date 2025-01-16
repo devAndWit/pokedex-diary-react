@@ -1,0 +1,9 @@
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pokedex-diary-container
+    ports:
+      - "3120:80"
+    restart: always
